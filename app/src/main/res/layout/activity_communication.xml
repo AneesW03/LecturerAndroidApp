@@ -140,7 +140,7 @@
 "           android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/endClassButton"
-            app:layout_constraintBottom_toTopOf="@+id/peerList"
+            app:layout_constraintBottom_toTopOf="@+id/deviceList"
             tools:layout_editor_absoluteY="100dp"
             />
 

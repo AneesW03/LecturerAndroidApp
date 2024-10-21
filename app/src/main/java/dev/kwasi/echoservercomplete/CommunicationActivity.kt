@@ -69,6 +69,11 @@ class CommunicationActivity : AppCompatActivity(), WifiDirectInterface, PeerList
       //  rvPeerList.adapter = peerListAdapter
        // rvPeerList.layoutManager = LinearLayoutManager(this)
 
+        deviceListAdapter = DeviceListAdapter()
+        val deviceList: RecyclerView = findViewById(R.id.deviceList)
+        deviceList.adapter = deviceListAdapter
+        deviceList.layoutManager = LinearLayoutManager(this)
+
         chatListAdapter = ChatListAdapter()
         val rvChatList: RecyclerView = findViewById(R.id.rvChat)
         rvChatList.adapter = chatListAdapter
@@ -209,5 +214,6 @@ class CommunicationActivity : AppCompatActivity(), WifiDirectInterface, PeerList
     private fun updateConnectedDevicesList(connectedDevices: Collection<WifiP2pDevice>) {
         hasConnectedDevices = connectedDevices.isNotEmpty()
         deviceListAdapter?.updateConnectedDevices(connectedDevices)
+        updateUI()
     }
 }
