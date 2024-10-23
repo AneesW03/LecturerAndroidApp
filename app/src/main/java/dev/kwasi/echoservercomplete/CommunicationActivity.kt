@@ -50,6 +50,10 @@ class CommunicationActivity : AppCompatActivity(), WifiDirectInterface, PeerList
     private var client: Client? = null
     private var deviceIp: String = ""
 
+    object LecturerData {
+        val validStudentIDRange: IntRange = 816000000..816999999
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -127,10 +131,10 @@ class CommunicationActivity : AppCompatActivity(), WifiDirectInterface, PeerList
         val etMessage:EditText = findViewById(R.id.etMessage)
         val etString = etMessage.text.toString()
         val content = ContentModel(etString, deviceIp)
+        val copyContent = ContentModel(content.message, content.senderIp)
         etMessage.text.clear()
-        client?.sendMessage(content)
-        chatListAdapter?.addItemToEnd(content)
-
+        server?.sendMessage(content)
+        chatListAdapter?.addItemToEnd(copyContent)
     }
 
     override fun onWiFiDirectStateChanged(isEnabled: Boolean) {
@@ -201,7 +205,7 @@ class CommunicationActivity : AppCompatActivity(), WifiDirectInterface, PeerList
     private fun setNetworkDetails(networkName: String, passphrase: String) {
         var nameView: TextView = findViewById(R.id.networkSSID)
         var passView: TextView = findViewById(R.id.password)
-        nameView.setText("Class Netowrk: $networkName")
+        nameView.setText("Class Network: $networkName")
         passView.setText("Password: $passphrase")
     }
 
@@ -216,4 +220,9 @@ class CommunicationActivity : AppCompatActivity(), WifiDirectInterface, PeerList
         deviceListAdapter?.updateConnectedDevices(connectedDevices)
         updateUI()
     }
+
+    fun isStudentInClass(studentID: Int): Boolean {
+        return studentID in LecturerData.validStudentIDRange
+    }
+
 }

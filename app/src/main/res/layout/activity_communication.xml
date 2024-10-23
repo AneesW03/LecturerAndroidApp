@@ -103,23 +103,31 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/chatHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Student Chat"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/rvChat" />
+
+        <TextView
             android:id="@+id/networkSSID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Class Netowork: "
             android:onClick="disconnect"
-            app:layout_constraintTop_toTopOf="parent"
+            android:text="Class Netowork: "
             app:layout_constraintStart_toStartOf="parent"
-             />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Password: "
-            app:layout_constraintTop_toBottomOf="@+id/networkSSID"
             app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/networkSSID" />
 
         <Button
             android:id="@+id/endClassButton"
@@ -128,37 +136,34 @@
             android:onClick="disconnect"
             android:text="End Class"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password"
-             />
+            app:layout_constraintTop_toBottomOf="@+id/password" />
 
         <TextView
             android:id="@+id/AttendeeHeading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Attendees"
+            android:textSize="16sp"
             android:textStyle="bold
-"           android:textSize="16sp"
+"
+            app:layout_constraintBottom_toTopOf="@+id/deviceList"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/endClassButton"
-            app:layout_constraintBottom_toTopOf="@+id/deviceList"
-            tools:layout_editor_absoluteY="100dp"
-            />
+            tools:layout_editor_absoluteY="100dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/deviceList"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            app:layout_constraintBottom_toTopOf="@+id/rvChat"
-            app:layout_constraintTop_toBottomOf="@id/endClassButton"
-            app:layout_constraintVertical_bias="0.779"
-            tools:layout_editor_absoluteX="24dp" />
+            app:layout_constraintTop_toBottomOf="@id/AttendeeHeading" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvChat"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="275dp"
             app:layout_constraintBottom_toTopOf="@id/llChatSend"
-            />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <LinearLayout
             android:id="@+id/llChatSend"
@@ -180,6 +185,7 @@
                 android:minLines="3" />
 
             <Button
+                android:id="@+id/sendButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.4"
